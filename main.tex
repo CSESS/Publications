@@ -1,0 +1,99 @@
+% page setup: letter with 1.25in margins
+\setuppapersize[letter]
+\setuplayout[margin=1.25in, width=6in, backspace=1.25in, margindistance=0pt, edgedistance=0pt]
+\setuppagenumbering[location=]
+%[location={footer, right}, style=\sans\small]
+
+% \showframe
+
+% font styles
+\definefontfeature[default][default][kern=yes, liga=yes, calt=yes, lnum=yes, protrusion=quality, expansion=quality]
+\setupbodyfont[libertinus, 12pt]
+
+% paragraph styles
+\setupalign[hz, hanging]
+\setupwhitespace[0.5em]
+\setupblank[0.75em]
+
+% section styles
+\setuphead[section][style=\tfb\bf\sans, distance=1.5em, before={\blank[1.5em]}, after={\blank[1em]}]
+\setuphead[subsection][style=\tfa\bf\sans, distance=1.25em, before={\blank[1.5em]}, after={\blank[0.75em]}]
+\setuphead[subsubsection][style=\tf\bf\sans, distance=1em, before={\blank[1.5em]}, after={\blank[0.75em]}]
+
+% pdf metadata
+\setupinteraction[
+state=start,
+color=,contrastcolor=,style=\underbar,
+title={Template},
+author={Samuel Tam}]
+\placebookmarks[section,subsection,subsubsection][force=yes]
+\setupinteractionscreen[option=bookmark]
+
+% citations
+% \usebtxdataset[default][_.bib]
+% \setupbtx[dataset=default]
+% \usebtxdefinitions[apa]
+
+\starttext
+
+% main title and subtitle
+\startsubject[title=Template \\ %
+\tfa\bf Subtitle Which Is Usually Longer]
+
+% cover art
+\startuseMPgraphic{globe}
+randomseed := 0;
+input fiziko.mp;
+draw globe(1.5in, -30, 60);
+\stopuseMPgraphic
+
+\vfill % remove
+\startplacefigure[location={none,here}]
+\useMPgraphic{globe}
+\stopplacefigure
+\startalignment[middle]
+\tfx\sans \bold{Figure 1.} Globe by fiziko. Pretty, isn't it?
+\stopalignment
+
+% cover art, image
+% \clip[width=\textwidth, height=0.5\textwidth, voffset=0em]{%
+% \externalfigure[assets/image.jpg][width=\textwidth]%
+% }
+% \startalignment[middle]
+% \tfx\sans \bold{Figure 1.} Cover Image.
+% \stopalignment
+
+% preamble under the cover art
+\startsubsubject[title=Preamble]
+\input khatt-en
+
+\vfill
+
+{ % begin metadata
+\sans
+\bold{Word count} \\
+1,200 words
+
+\bold{Due on} \\
+January 1, 2023 by 12:00 {\setff{smallcaps}a.m.}
+
+% \bold{Last modified} \\
+% \date
+
+\blank[2em]
+Samuel Tam \small{(20896297)} \\
+\small{
+% Corresponding author. \\
+Email: \goto{hytamap@connect.ust.hk}[url(mailto:hytamap@connect.ust.hk)]}
+} % end metadata
+
+\pagebreak
+
+% header styles
+\setupheadertexts[{}][{%
+\sans\tfx Template%
+\hspace[medium]\cdot\hspace[medium]\bold{\pagenumber}}]
+
+\input section.tex
+
+\stoptext

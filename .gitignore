@@ -1,0 +1,7 @@
+result
+*.log
+*.pdf
+*.syncctx
+*.synctex*
+*.tua
+*.tuc
