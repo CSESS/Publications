@@ -1,0 +1,46 @@
+name: "Automated Build"
+on:
+  push:
+    branches:
+    - '[0-9]+/**'
+    - 'templates/**'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up github-actions identity
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+    - uses: cachix/install-nix-action@v19
+      with:
+        nix_path: nixpkgs=channel:nixpkgs-unstable
+        extra_nix_config: |
+          trusted-public-keys = context-minimals.cachix.org-1:pYxyH24J/A04fznRlYbTTjWrn9EsfUQvccGMjfXMdj0= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://context-minimals.cachix.org/ https://cache.nixos.org/
+    - name: Invoke nix build
+      run: |
+        echo -n 'OUT_PATH=' >> $GITHUB_ENV
+        nix build --no-link --print-out-paths >> $GITHUB_ENV
+    - name: Switch to dist branch
+      run: |
+        git fetch --depth=1 origin dist:dist || true
+        git symbolic-ref HEAD refs/heads/dist
+        git reset --hard
+    - name: Install build to dist tree
+      run: |
+        mkdir -p ${GITHUB_REF#refs/heads/}
+        cp -aT ${{ env.OUT_PATH }} ${GITHUB_REF#refs/heads/}
+    - name: Commit and push to dist, if any changes
+      run: |
+        if [ -z "$(git status --porcelain)" ]; then
+          # no changes present, print status
+          git status
+        else
+          git add ${GITHUB_REF#refs/heads/}
+          git commit --allow-empty-message -m ""
+          git push origin dist
+        fi
