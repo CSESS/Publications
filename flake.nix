@@ -1,12 +1,16 @@
 {
   inputs.context-minimals.url = "github:usertam/context-minimals";
-  inputs.fiziko.url = "github:jemmybutton/fiziko";
-  inputs.fiziko.flake = false;
+  inputs.cover.url = "https://unsplash.com/photos/7K1_uSnNoy4/download";
+  inputs.cover.flake = false;
 
   outputs = { self, context-minimals, ... }@inputs: {
     packages = context-minimals.lib.mkCompilation {
       src = self;
-      postUnpack = "install -Dt $sourceRoot ${inputs.fiziko}/fiziko.mp";
+      nativeBuildInputs = [ "imagemagick" ];
+      postUnpack = ''
+        convert -quality 100% -despeckle -rotate 180 \
+          ${inputs.cover} "$sourceRoot/$(basename ${inputs.cover})"
+      '';
     };
     apps = context-minimals.lib.mkCompilationApps { };
   };

@@ -14,6 +14,7 @@
 \setupalign[hz, hanging]
 \setupwhitespace[0.5em]
 \setupblank[0.75em]
+\setupitemize[inbetween=]
 
 % section styles
 \setuphead[section][style=\tfb\bf\sans, distance=1.5em, before={\blank[1.5em]}, after={\blank[1em]}]
@@ -34,53 +35,30 @@ author={Samuel Tam}]
 % \setupbtx[dataset=default]
 % \usebtxdefinitions[apa]
 
+% background fill image
+\definelayer[bg][width=\paperwidth, height=\paperheight]
+\setlayer[bg]{%
+\clip[width=\paperheight, height=0.55\paperheight, voffset=0.5em, hoffset=0em]{%
+\externalfigure[q3jfxd6ksb7ki0yp3jwwag5v1vw07i14-source][width=\paperheight, scale=110]}}
+\setupbackgrounds[paper][background={bg,foreground}]
+
 \starttext
+
+\phantom{-}
+\vfill
 
 % main title and subtitle
 \startsubject[title=Template \\ %
 \tfa\bf Subtitle Which Is Usually Longer]
 
-% cover art
-\startuseMPgraphic{globe}
-randomseed := 0;
-input fiziko.mp;
-draw globe(1.5in, -30, 60);
-\stopuseMPgraphic
-
-\vfill % remove
-\startplacefigure[location={none,here}]
-\useMPgraphic{globe}
-\stopplacefigure
-\startalignment[middle]
-\tfx\sans \bold{Figure 1.} Globe by fiziko. Pretty, isn't it?
-\stopalignment
-
-% cover art, image
-% \clip[width=\textwidth, height=0.5\textwidth, voffset=0em]{%
-% \externalfigure[assets/image.jpg][width=\textwidth]%
-% }
-% \startalignment[middle]
-% \tfx\sans \bold{Figure 1.} Cover Image.
-% \stopalignment
-
-% preamble under the cover art
-\startsubsubject[title=Preamble]
-\input khatt-en
-
-\vfill
+\blank[2.5em]
 
 { % begin metadata
 \sans
-\bold{Word count} \\
-1,200 words
-
 \bold{Due on} \\
-January 1, 2023 by 12:00 {\setff{smallcaps}a.m.}
+March 1, 2023 at 11:59 {\setff{smallcaps}p.m.}
 
-% \bold{Last modified} \\
-% \date
-
-\blank[2em]
+\blank[1.25em]
 Samuel Tam \small{(20896297)} \\
 \small{
 % Corresponding author. \\
@@ -94,6 +72,6 @@ Email: \goto{hytamap@connect.ust.hk}[url(mailto:hytamap@connect.ust.hk)]}
 \sans\tfx Template%
 \hspace[medium]\cdot\hspace[medium]\bold{\pagenumber}}]
 
-\input section.tex
+% \input section.tex
 
 \stoptext

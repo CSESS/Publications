@@ -54,20 +54,16 @@
         "type": "github"
       }
     },
-    "fiziko": {
+    "cover": {
       "flake": false,
       "locked": {
-        "lastModified": 1666904362,
-        "narHash": "sha256-q29JjHum+vNKdxjxOtCW7Pi6TBBJ1qrS7I+78SD7iXE=",
-        "owner": "jemmybutton",
-        "repo": "fiziko",
-        "rev": "085007e3e9649480b5eca98a816819cbc9e071b2",
-        "type": "github"
+        "narHash": "sha256-utZVIb6rp4LVwZamUUf6s79/zKKcBKCckzpV9EVIqPQ=",
+        "type": "file",
+        "url": "https://unsplash.com/photos/7K1_uSnNoy4/download"
       },
       "original": {
-        "owner": "jemmybutton",
-        "repo": "fiziko",
-        "type": "github"
+        "type": "file",
+        "url": "https://unsplash.com/photos/7K1_uSnNoy4/download"
       }
     },
     "luatex": {
@@ -122,7 +118,7 @@
     "root": {
       "inputs": {
         "context-minimals": "context-minimals",
-        "fiziko": "fiziko"
+        "cover": "cover"
       }
     }
   },
