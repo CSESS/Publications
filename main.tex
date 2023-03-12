@@ -8,7 +8,9 @@
 
 % font styles
 \definefontfeature[default][default][kern=yes, liga=yes, calt=yes, lnum=yes, protrusion=quality, expansion=quality]
-\setupbodyfont[libertinus, 12pt]
+\definefontfamily[sourcehan][serif][sourcehanserif]
+\definefontfamily[sourcehan][sans][sourcehansans]
+\setupbodyfont[source, ss, 10pt]
 
 % paragraph styles
 \setupalign[hz, hanging]
@@ -25,53 +27,127 @@
 \setupinteraction[
 state=start,
 color=,contrastcolor=,style=\underbar,
-title={Template},
-author={Samuel Tam}]
+title={Provisional Year Plan},
+author={CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24}]
 \placebookmarks[section,subsection,subsubsection][force=yes]
 \setupinteractionscreen[option=bookmark]
+
+% natural tables
+\definecolor[thisgrey][x=D0D0D0]
+\setupTABLE[rulethickness=0.5pt, framecolor=thisgrey, offset=0.5em, split=repeat, option=stretch]
+\setupTABLE[r][each][align={lohi}]
+\setupTABLE[r][1][style=\bf, toffset=0.5em, boffset=0.5em]
+\setuptabulate[rulethickness=0.5pt, rulecolor=thisgrey]
+
+% dark grey font
+\definecolor[thisdarkgrey][x=303030]
+\setupcolors[textcolor=thisdarkgrey]
 
 % citations
 % \usebtxdataset[default][_.bib]
 % \setupbtx[dataset=default]
 % \usebtxdefinitions[apa]
 
-% background fill image
-\definelayer[bg][width=\paperwidth, height=\paperheight]
-\setlayer[bg]{%
-\clip[width=\paperheight, height=0.55\paperheight, voffset=0.5em, hoffset=0em]{%
-\externalfigure[q3jfxd6ksb7ki0yp3jwwag5v1vw07i14-source][width=\paperheight, scale=110]}}
-\setupbackgrounds[paper][background={bg,foreground}]
+% cover art face
+\definelayer[cover-1][width=\paperwidth, height=\paperheight]
+\setlayer[cover-1]{%
+\externalfigure[assets/cover.png][width=\paperwidth]}
+
+% cover art inner
+\definelayer[cover-2][width=\paperwidth, height=\paperheight]
+\setlayer[cover-2]{%
+\clip[width=\paperheight, height=\paperheight, voffset=0em, hoffset=5em]{%
+\externalfigure[q3jfxd6ksb7ki0yp3jwwag5v1vw07i14-source][width=\paperheight, scale=130]}}
 
 \starttext
 
+% cover page
+\setupbackgrounds[paper][background={cover-1,foreground}]
+\phantom{-}
+\vfill
+\startalignment[middle]
+\color[white]{\setff{smallcaps}\bold{CinderS, The Elected Cabinet of The Computer Science and \\ Engineering Students' Society, HKUSTSU, Session 2023\endash2024}}
+\stopalignment
+\pagebreak
+
+% blank page
+\phantom{-}
+\vfill
+\startalignment[middle]
+Typeset in 10pt Source Han Sans, with \ConTeXt\ LMTX.
+
+Printed this 12\high{th} day of March, 2023.
+\stopalignment
+\vfill
+\phantom{-}
+\pagebreak
+
+% inner cover page
+\setupbackgrounds[paper][background={cover-2,foreground}]
 \phantom{-}
 \vfill
 
 % main title and subtitle
-\startsubject[title=Template \\ %
-\tfa\bf Subtitle Which Is Usually Longer]
+\subject{Provisional Year Plan}
+\blank[back, disable]
+\subsubject{%
+CinderS, The Elected Cabinet of The Computer Science and Engineering Students' Society, HKUSTSU, Session 2023\endash2024}
 
-\blank[2.5em]
-
-{ % begin metadata
-\sans
-\bold{Due on} \\
-March 1, 2023 at 11:59 {\setff{smallcaps}p.m.}
-
-\blank[1.25em]
-Samuel Tam \small{(20896297)} \\
-\small{
-% Corresponding author. \\
-Email: \goto{hytamap@connect.ust.hk}[url(mailto:hytamap@connect.ust.hk)]}
-} % end metadata
+% \blank[big]
+% Last Modified: 12\high{th} March, 2023. \\
 
 \pagebreak
 
-% header styles
-\setupheadertexts[{}][{%
-\sans\tfx Template%
-\hspace[medium]\cdot\hspace[medium]\bold{\pagenumber}}]
+\startsetups[headerleft]
+\startframed[frame=off,offset=none,align=flushleft,width=fit]
+\tfx\setupinterlinespace
+CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24\\
+Provisional Year Plan
+\stopframed
+\stopsetups
+
+\startsetups[headerright]
+\startframed[frame=off,offset=none,align=flushright,width=fit]
+\tfx\setupinterlinespace
+CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24\\
+Provisional Year Plan
+\stopframed
+\stopsetups
+
+\setupheadertexts%
+% header styles (odd: left, right)
+[\directsetup{headerleft}][{%
+\sans\tfx%
+\getmarking[section]%
+\hspace[medium]\cdot\hspace[medium]%
+\bold{\pagenumber}}]%
+% header styles (even: right, left)
+[\directsetup{headerright}][{%
+\sans\tfx%
+\bold{\pagenumber}%
+\hspace[medium]\cdot\hspace[medium]%
+\getmarking[section]}]
 
 % \input section.tex
+\input sections/1-cabinet-members.tex
+\input sections/2-overview.tex
+\input sections/3-daily-operation.tex
+\input sections/4-rock-climbing-day.tex
+\input sections/5-cse-farewell-video.tex
+\input sections/6-cse-farewell-dinner.tex
+\input sections/7-cse-welcome-day.tex
+\input sections/8-registration-day.tex
+\input sections/9-orientation-day.tex
+\input sections/10-orientation-camp.tex
+\input sections/11-orientation-week.tex
+\input sections/12-subcom-function.tex
+\input sections/13-welfare-distribution.tex
+\input sections/14-information-session.tex
+\input sections/15-cse-phototaking-day.tex
+\input sections/16-cse-annual-dinner.tex
+\input sections/17-forum.tex
+\input sections/18-polling.tex
+\input sections/19-consultation.tex
+\input sections/20-annual-general-meeting.tex
 
 \stoptext
