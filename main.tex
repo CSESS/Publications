@@ -59,6 +59,11 @@ author={CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24}]
 \clip[width=\paperheight, height=\paperheight, voffset=0em, hoffset=5em]{%
 \externalfigure[q3jfxd6ksb7ki0yp3jwwag5v1vw07i14-source][width=\paperheight, scale=130]}}
 
+% remaster ordinal indicators
+\unprotect
+\setuphigh[\c!style=\txx,\c!distance=\zeropoint,\c!up=.48\exheight]
+\protect
+
 \starttext
 
 % cover page
@@ -66,7 +71,7 @@ author={CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24}]
 \phantom{-}
 \vfill
 \startalignment[middle]
-\color[white]{\setff{smallcaps}\bold{CinderS, The Elected Cabinet of The Computer Science and \\ Engineering Students' Society, HKUSTSU, Session 2023\endash2024}}
+\color[white]{\setff{smallcaps}\bold{\kerncharacters[0.075]{CinderS, The Elected Cabinet of The Computer Science and \\ Engineering Students' Society, HKUSTSU, Session 2023\endash2024}}}
 \stopalignment
 \pagebreak
 
@@ -74,9 +79,10 @@ author={CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24}]
 \phantom{-}
 \vfill
 \startalignment[middle]
+\kerncharacters[0.075]
 Typeset in 10pt Source Han Sans, with \ConTeXt\ LMTX.
 
-Printed this 12\high{th} day of March, 2023.
+Printed this \date[d=16, m=3, y=2023][day:highord,{~day~of~},month,{,~},year].
 \stopalignment
 \vfill
 \phantom{-}
@@ -91,7 +97,8 @@ Printed this 12\high{th} day of March, 2023.
 \subject{Provisional Year Plan}
 \blank[back, disable]
 \subsubject{%
-CinderS, The Elected Cabinet of The Computer Science and Engineering Students' Society, HKUSTSU, Session 2023\endash2024}
+CinderS, The Elected Cabinet of The Computer Science and Engineering \\
+Students' Society, HKUSTSU, Session 2023\endash2024}
 
 % \blank[big]
 % Last Modified: 12\high{th} March, 2023. \\
