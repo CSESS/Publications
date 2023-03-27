@@ -9,7 +9,7 @@
       nativeBuildInputs = [ "imagemagick" ];
       postUnpack = ''
         convert -quality 100% -despeckle -rotate 180 \
-          ${inputs.cover} "$sourceRoot/$(basename ${inputs.cover})"
+          ${inputs.cover} "$sourceRoot/cover.jpeg"
       '';
     };
     apps = context-minimals.lib.mkCompilationApps { };
