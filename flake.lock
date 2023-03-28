@@ -57,13 +57,13 @@
     "cover": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-utZVIb6rp4LVwZamUUf6s79/zKKcBKCckzpV9EVIqPQ=",
+        "narHash": "sha256-a7GETaJ3B6/YH4GUZaqLVNH0iYdbP2b/W1YWeLNsF/k=",
         "type": "file",
-        "url": "https://unsplash.com/photos/7K1_uSnNoy4/download"
+        "url": "https://unsplash.com/photos/ixxjruC7Gg4/download"
       },
       "original": {
         "type": "file",
-        "url": "https://unsplash.com/photos/7K1_uSnNoy4/download"
+        "url": "https://unsplash.com/photos/ixxjruC7Gg4/download"
       }
     },
     "luatex": {

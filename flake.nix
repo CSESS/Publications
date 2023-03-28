@@ -1,6 +1,6 @@
 {
   inputs.context-minimals.url = "github:usertam/context-minimals";
-  inputs.cover.url = "https://unsplash.com/photos/7K1_uSnNoy4/download";
+  inputs.cover.url = "https://unsplash.com/photos/ixxjruC7Gg4/download";
   inputs.cover.flake = false;
 
   outputs = { self, context-minimals, ... }@inputs:
@@ -14,8 +14,11 @@
       src = self;
       nativeBuildInputs = [ "imagemagick" ];
       postUnpack = ''
-        convert -quality 100% -despeckle -rotate 180 \
-          ${inputs.cover} "$sourceRoot/$(basename ${inputs.cover})"
+        convert -despeckle -quality 100% \
+          -rotate 270 -crop 3000x2625+750+375 -modulate 100,80,110 \
+          -alpha set -channel A \
+            -sparse-color barycentric '0,%[fx:h*0.75] white 0,%h none' +channel \
+          ${inputs.cover} "$sourceRoot/cover-2.png"
       '';
     };
     apps = context-minimals.lib.mkCompilationApps {

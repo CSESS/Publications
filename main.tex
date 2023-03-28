@@ -1,4 +1,4 @@
-% page setup: letter with 1.25in margins
+% 8.5 x 11in letter; 6in text width + 1.25in margins
 \setuppapersize[letter]
 \setuplayout[margin=1.25in, width=6in, backspace=1.25in, margindistance=0pt, edgedistance=0pt]
 \setuppagenumbering[location=]
@@ -17,6 +17,8 @@
 \setupwhitespace[0.5em]
 \setupblank[0.75em]
 \setupitemize[inbetween=]
+% inline ordinal indicators
+\setuphigh[style=\txx, distance=\zeropoint, up=.46\exheight]
 
 % section styles
 \setuphead[section][style=\tfb\bf\sans, distance=1.5em, before={\blank[1.5em]}, after={\blank[1em]}]
@@ -25,7 +27,7 @@
 
 % pdf metadata
 \setupinteraction[
-state=start,
+state=start,focus=standard,
 color=,contrastcolor=,style=\underbar,
 title={Provisional Year Plan},
 author={CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24}]
@@ -48,92 +50,98 @@ author={CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24}]
 % \setupbtx[dataset=default]
 % \usebtxdefinitions[apa]
 
-% cover art face
+% front cover art
 \definelayer[cover-1][width=\paperwidth, height=\paperheight]
 \setlayer[cover-1]{%
-\externalfigure[assets/cover.png][width=\paperwidth]}
+\externalfigure[assets/cover-1.png][width=\paperwidth]}
 
-% cover art inner
+% inner cover art
 \definelayer[cover-2][width=\paperwidth, height=\paperheight]
 \setlayer[cover-2]{%
-\clip[width=\paperheight, height=\paperheight, voffset=0em, hoffset=5em]{%
-\externalfigure[q3jfxd6ksb7ki0yp3jwwag5v1vw07i14-source][width=\paperheight, scale=130]}}
-
-% remaster ordinal indicators
-\unprotect
-\setuphigh[\c!style=\txx,\c!distance=\zeropoint,\c!up=.48\exheight]
-\protect
+\externalfigure[cover-2.png][width=\paperwidth]}
 
 \starttext
 
-% cover page
+% page 1: front cover
 \setupbackgrounds[paper][background={cover-1,foreground}]
 \phantom{-}
 \vfill
 \startalignment[middle]
-\color[white]{\setff{smallcaps}\bold{\kerncharacters[0.075]{CinderS, The Elected Cabinet of The Computer Science and \\ Engineering Students' Society, HKUSTSU, Session 2023\endash2024}}}
+\color[white]{\setff{smallcaps}\bold{\kerncharacters[0.075]{%
+CinderS, The Elected Cabinet of The Computer Science and \\ %
+Engineering Students' Society, HKUSTSU, Session 2023\endash2024}}}
 \stopalignment
 \pagebreak
 
-% blank page
+% page 2: metadata
 \phantom{-}
 \vfill
 \startalignment[middle]
 \kerncharacters[0.075]
 Typeset in 10pt Source Han Sans, with \ConTeXt\ LMTX.
 
-Printed this \date[d=16, m=3, y=2023][day:highord,{~day~of~},month,{,~},year].
+Printed this \date[d=29, m=3, y=2023][day:highord,{~day~of~},month,{,~},year].
+
+\dontleavehmode
+\startframed[frame=off, offset=none, width=16em]
+\thinrule
+\stopframed
+
+Copyright \copyright\ 2023 CSESS, HKUSTSU, 23\endash24.
+
+This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
 \stopalignment
 \vfill
 \phantom{-}
 \pagebreak
 
-% inner cover page
+% page 2: inner cover
 \setupbackgrounds[paper][background={cover-2,foreground}]
 \phantom{-}
 \vfill
-
-% main title and subtitle
 \subject{Provisional Year Plan}
 \blank[back, disable]
 \subsubject{%
 CinderS, The Elected Cabinet of The Computer Science and Engineering \\
 Students' Society, HKUSTSU, Session 2023\endash2024}
-
-% \blank[big]
-% Last Modified: 12\high{th} March, 2023. \\
-
 \pagebreak
 
-\startsetups[headerleft]
+% set up headers for proceeding pages
+\startsetups[header-odd-left]
 \startframed[frame=off,offset=none,align=flushleft,width=fit]
 \tfx\setupinterlinespace
-CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24\\
+CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24 \\
 Provisional Year Plan
 \stopframed
 \stopsetups
 
-\startsetups[headerright]
+\startsetups[header-odd-right]
+\tfx\setupinterlinespace
+\getmarking[section]
+\hspace[medium]\cdot\hspace[medium]
+\bold{\pagenumber}
+\stopsetups
+
+\startsetups[header-even-left]
+\tfx\setupinterlinespace
+\bold{\pagenumber}
+\hspace[medium]\cdot\hspace[medium]
+\getmarking[section]
+\stopsetups
+
+\startsetups[header-even-right]
 \startframed[frame=off,offset=none,align=flushright,width=fit]
 \tfx\setupinterlinespace
-CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24\\
+CinderS, The Elected Cabinet of CSESS, HKUSTSU, 23\endash24 \\
 Provisional Year Plan
 \stopframed
 \stopsetups
 
-\setupheadertexts%
-% header styles (odd: left, right)
-[\directsetup{headerleft}][{%
-\sans\tfx%
-\getmarking[section]%
-\hspace[medium]\cdot\hspace[medium]%
-\bold{\pagenumber}}]%
-% header styles (even: right, left)
-[\directsetup{headerright}][{%
-\sans\tfx%
-\bold{\pagenumber}%
-\hspace[medium]\cdot\hspace[medium]%
-\getmarking[section]}]
+\setupheadertexts
+[\directsetup{header-odd-left}]
+[\directsetup{header-odd-right}]
+[\directsetup{header-even-right}]
+[\directsetup{header-even-left}]
 
 % \input section.tex
 \input sections/1-cabinet-members.tex
