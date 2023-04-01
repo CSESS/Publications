@@ -7,10 +7,9 @@
   let
     fonts = [ "source-sans-pro" "source-han-serif" ];
     fcache = [ "sourcehanserif" ];
-    suffices = [ ".tex" ".png" ];
   in {
     packages = context-minimals.lib.mkCompilation {
-      inherit fonts fcache suffices;
+      inherit fonts fcache;
       src = self;
       nativeBuildInputs = [ "imagemagick" ];
       postUnpack = ''
