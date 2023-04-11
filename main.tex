@@ -19,6 +19,8 @@
 \setupitemize[inbetween=]
 % inline ordinal indicators
 \setuphigh[style=\txx, distance=\zeropoint, up=.46\exheight]
+% dates styles
+\definedate[event][day:highord,{~},month,{,~},year,{~(},weekday,{)}]
 
 % section styles
 \setuphead[section][style=\tfb\bf\sans, distance=1.5em, before={\blank[1.5em]}, after={\blank[1em]}]
@@ -89,7 +91,8 @@ Printed this \date[d=29, m=3, y=2023][day:highord,{~day~of~},month,{,~},year].
 
 Copyright \copyright\ 2023 CSESS, HKUSTSU, 23\endash24.
 
-This work is licensed under a \goto{Creative Commons Attribution-NonCommercial 4.0 International License}[url(http://creativecommons.org/licenses/by-nc/4.0/)].
+{\tfx\setupinterlinespace
+This work is licensed under a \goto{Creative Commons\\Attribution-NonCommercial 4.0 International License}[url(http://creativecommons.org/licenses/by-nc/4.0/)].}
 \stopalignment
 \vfill
 \phantom{-}
@@ -145,7 +148,8 @@ Provisional Year Plan
 
 % \input section.tex
 \input sections/1-cabinet-members.tex
-\input sections/2-overview.tex
+\input sections/2-contents.tex
+% \input sections/2-overview.tex
 \input sections/3-daily-operation.tex
 \input sections/4-rock-climbing-day.tex
 \input sections/5-cse-farewell-video.tex

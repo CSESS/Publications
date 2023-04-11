@@ -1,0 +1,13 @@
+\section{Table of Contents}
+
+\definefiller[dots][]
+\setuplistalternative[c][filler={\filler[dots]}]
+
+\define[1]\sectiontocentry{%
+\doifnot{\rawstructurelistuservariable{date}}{}{\structurelistuservariable{date}\crlf}%
+#1\doifnot{\rawstructurelistuservariable{pic}}{}{: \structurelistuservariable{pic}}}
+\setuplist[section][textcommand=\sectiontocentry]
+
+\placecontent[criterium=all,list={section},alternative=c]
+
+\pagebreak
