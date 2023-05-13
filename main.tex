@@ -1,6 +1,6 @@
 % page setup: letter with 1.25in margins
 \setuppapersize[letter]
-\setuplayout[margin=1.25in, width=6in, backspace=1.25in, margindistance=0pt, edgedistance=0pt]
+\setuplayout[margin=1.25in, width=6in, backspace=1.25in, margindistance=0pt, edgedistance=0pt, header=7.5em]
 \setuppagenumbering[location=]
 %[location={footer, right}, style=\sans\small]
 
@@ -8,7 +8,7 @@
 
 % font styles
 \definefontfeature[default][default][kern=yes, liga=yes, calt=yes, lnum=yes, protrusion=quality, expansion=quality]
-\setupbodyfont[libertinus, 12pt]
+\setupbodyfont[source, ss, 10pt]
 
 % paragraph styles
 \setupalign[hz, hanging]
@@ -17,7 +17,7 @@
 \setupitemize[inbetween=]
 
 % section styles
-\setuphead[section][style=\tfb\bf\sans, distance=1.5em, before={\blank[1.5em]}, after={\blank[1em]}]
+\setuphead[section][style=\tfa\bf\sans, distance=1.5em, before={\blank[1.5em]}, after={\blank[1em]}]
 \setuphead[subsection][style=\tfa\bf\sans, distance=1.25em, before={\blank[1.5em]}, after={\blank[0.75em]}]
 \setuphead[subsubsection][style=\tf\bf\sans, distance=1em, before={\blank[1.5em]}, after={\blank[0.75em]}]
 
@@ -35,43 +35,99 @@ author={Samuel Tam}]
 % \setupbtx[dataset=default]
 % \usebtxdefinitions[apa]
 
-% background fill image
-\definelayer[bg][width=\paperwidth, height=\paperheight]
-\setlayer[bg]{%
-\clip[width=\paperheight, height=0.55\paperheight, voffset=0.5em, hoffset=0em]{%
-\externalfigure[cover.jpeg][width=\paperheight, scale=110]}}
-\setupbackgrounds[paper][background={bg,foreground}]
+% header styles
+\definecolor[dark][x=424242]
+\setupheader[text][middletext={%
+\startframed[location=middle,align=flushleft,frame=off]
+\externalfigure[assets/csess-logo-paper.pdf][height=48pt]
+\stopframed
+\hspace[medium]
+\startframed[location=middle,align=flushleft,frame=off]
+\tfa\bf\sans\color[dark]{%
+The Computer Science and Engineering Students' Society, \\
+The Hong Kong University of Science and Technology Students' Union, \\
+Session 2023\endash2024
+}\stopframed}]
+
+% footer styles
+\setupfootertexts[{%
+\sans\tfx%
+Email: \goto{su_csess@ust.hk}[url(mailto:su_csess@ust.hk)]%
+\hspace[medium]\cdot\hspace[medium]%
+Website: \goto{csess.su.ust.hk}[url(https://csess.su.ust.hk)]%
+}][{%
+\sans\tfx Reimbursement for CSE Farewell Dinner 2023%
+\hspace[medium]\cdot\hspace[medium]\bold{\pagenumber}}]
 
 \starttext
 
-\phantom{-}
+\definehspace[one][1.39em]
+\definehspace[two][2.57em]
+
+{\setff{smallcaps} from} \hspace[one] \start
+\setupinterlinespace[off]
+\setupindenting[yes, 4em]
+The Computer Science and Engineering Students' Society, HKUSTSU \par
+Mailbox \#3, Student Centre \par
+The Hong Kong University of Science and Technology \par
+Clear Water Bay, Kowloon \par
+Hong Kong \par
+\stop
+
+\bigskip
+
+{\setff{smallcaps} to} \hspace[two] \start
+\setupinterlinespace[off]
+\setupindenting[yes, 4em]
+Department of Computer Science and Engineering \par
+Room 3528, Academic Building \par
+The Hong Kong University of Science and Technology \par
+Clear Water Bay, Kowloon \par
+Hong Kong \par
+\stop
+
+\smallskip
+
+\startalignment[flushright]
+\date[day=13, month=5, year=2023]
+\stopalignment
+
+\blank[2em]
+\startalignment[middle]
+\bold{Subject: Reimbursement for CSE Farewell Dinner 2023}
+\stopalignment
+\blank[2em]
+
+Dear Department of Computer Science and Engineering,
+
+I am writing to request reimbursement for applicable expenses incurred during CSE Farewell Dinner 2023 held on May 10, 2023. The total cost of the event was \$8000, which includes souvenirs gifts, instant camera and photos, and venue decorations. For your reference, the bank account details are as follows:
+
+\starttabulate[|r|l|]
+\NC Bank Name: \NC HSBC (004) \NC \NR
+\NC Account Number: \NC 588-238980-833 \NC \NR
+\NC Account Holder Name: \NC Chiu Ho Sun, Poon Yui \NC \NR
+\stoptabulate
+
+Thank you for your assistance in this matter.
+
 \vfill
 
-% main title and subtitle
-\startsubject[title=Template \\ %
-\tfa\bf Subtitle Which Is Usually Longer]
+Sincerely,
 
-\blank[2.5em]
+% sign and chop
+\definelayer[chop][x=\dimexpr14em+\leftmarginwidth, y=\dimexpr0.675\paperheight]
+\setlayer[chop][]{\rotate[rotation=-2.5]{\externalfigure[assets/society-chop-traced.pdf][width=8em]}}
+\setupbackgrounds[paper][background={chop,foreground}]
 
-{ % begin metadata
-\sans
-\bold{Due on} \\
-March 1, 2023 at 11:59 {\setff{smallcaps}p.m.}
-
-\blank[1.25em]
-Samuel Tam \small{(20896297)} \\
-\small{
-% Corresponding author. \\
-Email: \goto{hytamap@connect.ust.hk}[url(mailto:hytamap@connect.ust.hk)]}
-} % end metadata
-
-\pagebreak
-
-% header styles
-\setupheadertexts[{}][{%
-\sans\tfx Template%
-\hspace[medium]\cdot\hspace[medium]\bold{\pagenumber}}]
-
-% \input section.tex
+\blank[5em]
+\dontleavehmode
+\startframed[frame=off, offset=none, width=18em]
+\thinrule
+\stopframed \\
+Jacky Wong \\
+Academic Secretary \\
+The Computer Science and Engineering Students' Society, \\
+The Hong Kong University of Science and Technology Students' Union, \\
+Session 2023\endash2024
 
 \stoptext
